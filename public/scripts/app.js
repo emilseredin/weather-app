@@ -6,7 +6,7 @@ weatherForm.addEventListener("submit", (e) => {
     const location = search.value;
 
     if (location) {
-        const uri = "http://localhost:3000/weather?address=" + location;
+        const uri = "/weather?address=" + location;
         const locationText = document.querySelector(".location-text");
         const forecastText = document.querySelector(".forecast-text");
         locationText.textContent = "Loading...";
