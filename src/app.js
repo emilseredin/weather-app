@@ -18,7 +18,7 @@ hbs.registerPartials(partialsPath);
 app.use(express.static(publicPathDir));
 app.get("", (req, res) => {
     res.render("index", {
-        title: "App",
+        title: "Weather App",
         header: "Weather App",
         name: "Emil Seredin"
     });
@@ -46,12 +46,20 @@ app.get("/weather", (req, res) => {
             return res.send({ error });
         }
     
-        forecast(latitude, longitude, (error, { temperature, feelslike }) => {
+        forecast(latitude, longitude, (error, { temperature, feelslike, description, humidity, cloudcover, icon }) => {
             if (error) {
                 return res.send({ error });
             } 
     
-            return res.send({ temperature, feelslike, location });
+            return res.send({ 
+                temperature, 
+                feelslike, 
+                location, 
+                description, 
+                humidity, 
+                cloudcover, 
+                icon 
+            });
         });
     });
 });
@@ -59,7 +67,7 @@ app.get("/weather", (req, res) => {
 app.get("/help", (req, res) => {
     res.render("help", {
         title: "Help",
-        header: "How can we help you?",
+        header: "Help",
         name: "Emil Seredin"
     });
 });
